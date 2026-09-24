@@ -1,0 +1,114 @@
+_schema-version: 3.3.0
+ID: petrobras-maintenance-s2
+description: CAP Workshop Session 2 — Petrobras Maintenance System
+version: 0.0.1
+modules:
+- name: petrobras-maintenance-s2-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: petrobras-maintenance-s2-auth
+  - name: petrobras-maintenance-s2-db
+  - name: petrobras-maintenance-s2-destination
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    disk-quota: 1024M
+    memory: 512M
+  build-parameters:
+    builder: npm-ci
+- name: petrobras-maintenance-s2-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: petrobras-maintenance-s2-db
+  parameters:
+    buildpack: nodejs_buildpack
+    disk-quota: 1024M
+    memory: 256M
+- name: petrobras-maintenance-s2-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: petrobras-maintenance-s2-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - comsapmngordsmaintenanceorderes.zip
+      name: comsapmngordsmaintenanceorderes
+      target-path: resources/
+- name: comsapmngordsmaintenanceorderes
+  type: html5
+  path: app/maintenance-orderes
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: petrobras-maintenance-s2-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: petrobras-maintenance-s2-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: petrobras-maintenance-s2-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+  properties:
+    hdi-service-name: ${service-name}
+- name: petrobras-maintenance-s2-destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: OAuth2ClientCredentials
+            Description: Spare Parts Catalog API (OAuth2)
+            HTML5.DynamicDestination: true
+            Name: SparePartsAPI
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://your-spare-parts-api.example.com
+            clientId: YOUR_CLIENT_ID
+            clientSecret: YOUR_CLIENT_SECRET
+            tokenServiceURL: https://your-uaa.authentication.us10.hana.ondemand.com/oauth/token
+            tokenServiceURLType: Dedicated
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+    service: destination
+    service-plan: lite
+- name: petrobras-maintenance-s2-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: petrobras-maintenance-s2-html5-service
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production

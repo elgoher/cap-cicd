@@ -1,0 +1,13 @@
+VIEW MaintenanceService_Equipment AS SELECT
+  Equipment_0.ID,
+  Equipment_0.createdAt,
+  Equipment_0.createdBy,
+  Equipment_0.modifiedAt,
+  Equipment_0.modifiedBy,
+  Equipment_0.code,
+  Equipment_0.description,
+  Equipment_0.status,
+  Equipment_0.type,
+  Equipment_0.location,
+  Equipment_0.plant
+FROM petrobras_maintenance_Equipment AS Equipment_0

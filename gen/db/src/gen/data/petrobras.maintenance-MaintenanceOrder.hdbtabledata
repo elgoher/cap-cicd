@@ -1,0 +1,51 @@
+{
+  "format_version": 1,
+  "imports": [
+    {
+      "target_table": "PETROBRAS_MAINTENANCE_MAINTENANCEORDER",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "petrobras.maintenance-MaintenanceOrder.csv",
+        "has_header": true,
+        "type_config": {
+          "delimiter": ","
+        }
+      },
+      "import_settings": {
+        "import_columns": [
+          "ID",
+          "ORDERNUMBER",
+          "EQUIPMENT_ID",
+          "STATUS",
+          "PRIORITY",
+          "DESCRIPTION",
+          "PLANNEDSTART",
+          "PLANNEDEND",
+          "RESPONSIBLE",
+          "NOTES",
+          "CREATEDAT",
+          "CREATEDBY",
+          "MODIFIEDAT",
+          "MODIFIEDBY"
+        ],
+        "include_filter": []
+      },
+      "column_mappings": {
+        "ID": "ID",
+        "ORDERNUMBER": "orderNumber",
+        "EQUIPMENT_ID": "equipment_ID",
+        "STATUS": "status",
+        "PRIORITY": "priority",
+        "DESCRIPTION": "description",
+        "PLANNEDSTART": "plannedStart",
+        "PLANNEDEND": "plannedEnd",
+        "RESPONSIBLE": "responsible",
+        "NOTES": "notes",
+        "CREATEDAT": "createdAt",
+        "CREATEDBY": "createdBy",
+        "MODIFIEDAT": "modifiedAt",
+        "MODIFIEDBY": "modifiedBy"
+      }
+    }
+  ]
+}

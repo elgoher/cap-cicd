@@ -1,0 +1,153 @@
+{
+  "_version": "1.86.0",
+  "sap.app": {
+    "id": "com.sap.mngords.maintenanceorderes",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.31.1",
+      "toolsId": "c346399b-98e9-470f-bdea-7fb70d3ca394"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/maintenance/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Maintenance-Orders": {
+          "semanticObject": "Maintenance",
+          "action": "Orders",
+          "title": "{{Maintenance-Orders.flpTitle}}",
+          "subTitle": "{{Maintenance-Orders.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.151.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.sap.mngords.maintenanceorderes.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "MaintenanceOrdersList",
+          "target": "MaintenanceOrdersList"
+        },
+        {
+          "pattern": "MaintenanceOrders({key}):?query:",
+          "name": "MaintenanceOrdersObjectPage",
+          "target": "MaintenanceOrdersObjectPage"
+        }
+      ],
+      "targets": {
+        "MaintenanceOrdersList": {
+          "type": "Component",
+          "id": "MaintenanceOrdersList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "entitySet": "MaintenanceOrders",
+              "variantManagement": "None",
+              "initialLoad": true,
+              "navigation": {
+                "MaintenanceOrders": {
+                  "detail": {
+                    "route": "MaintenanceOrdersObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "MaintenanceOrdersObjectPage": {
+          "type": "Component",
+          "id": "MaintenanceOrdersObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "entitySet": "MaintenanceOrders"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.fe": {
+    "app": {
+      "enableLazyLoading": true
+    }
+  }
+}

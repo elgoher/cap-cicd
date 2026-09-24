@@ -1,0 +1,14 @@
+COLUMN TABLE petrobras_maintenance_Equipment (
+  ID NVARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  code NVARCHAR(20),
+  description NVARCHAR(100),
+  status NVARCHAR(20) NOT NULL DEFAULT 'ACTIVE',
+  type NVARCHAR(50),
+  location NVARCHAR(100),
+  plant NVARCHAR(10),
+  PRIMARY KEY(ID)
+)

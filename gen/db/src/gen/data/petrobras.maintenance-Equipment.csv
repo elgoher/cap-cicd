@@ -1,0 +1,7 @@
+ID,code,description,status,type,location,plant,createdAt,createdBy,modifiedAt,modifiedBy
+e1000000-0000-0000-0000-000000000001,EQ-PUMP-001,Bomba Centrífuga Principal,ACTIVE,PUMP,Plataforma P-55 - Deck A,P55,2024-01-10T08:00:00Z,admin@petrobras.com,2024-01-10T08:00:00Z,admin@petrobras.com
+e1000000-0000-0000-0000-000000000002,EQ-COMP-001,Compresor de Gas Natural,ACTIVE,COMPRESSOR,Plataforma P-55 - Sala de Máquinas,P55,2024-01-10T08:00:00Z,admin@petrobras.com,2024-01-10T08:00:00Z,admin@petrobras.com
+e1000000-0000-0000-0000-000000000003,EQ-TURB-001,Turbina de Generación,INACTIVE,TURBINE,Plataforma P-62 - Sala de Turbinas,P62,2024-01-15T09:00:00Z,admin@petrobras.com,2024-03-01T10:00:00Z,tecnico@petrobras.com
+e1000000-0000-0000-0000-000000000004,EQ-PUMP-002,Bomba de Inyección de Agua,ACTIVE,PUMP,Plataforma P-55 - Deck B,P55,2024-01-20T08:00:00Z,admin@petrobras.com,2024-01-20T08:00:00Z,admin@petrobras.com
+e1000000-0000-0000-0000-000000000005,EQ-VALVE-001,Válvula de Seguridad Crítica,ACTIVE,VALVE,Plataforma P-62 - Manifold,P62,2024-02-01T08:00:00Z,admin@petrobras.com,2024-02-01T08:00:00Z,admin@petrobras.com
+e1000000-0000-0000-0000-000000000006,EQ-PUMP-003,Bomba de Transferencia,DECOMMISSIONED,PUMP,Almacén - Baja,P55,2023-06-01T08:00:00Z,admin@petrobras.com,2024-01-05T08:00:00Z,admin@petrobras.com

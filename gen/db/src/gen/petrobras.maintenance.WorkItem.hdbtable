@@ -1,0 +1,15 @@
+COLUMN TABLE petrobras_maintenance_WorkItem (
+  ID NVARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  order_ID NVARCHAR(36) NOT NULL,
+  description NVARCHAR(200),
+  technician NVARCHAR(100),
+  status NVARCHAR(20) NOT NULL DEFAULT 'PENDING',
+  notes NVARCHAR(500),
+  partCode NVARCHAR(20),
+  estimatedHours DECIMAL(4, 1),
+  PRIMARY KEY(ID)
+)

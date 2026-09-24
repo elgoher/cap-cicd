@@ -1,0 +1,136 @@
+{
+  "name": "cap-workshop-session-02",
+  "version": "2.0.0",
+  "description": "CAP Workshop – Session 02: Seguridad, APIs Externas y Resiliencia",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@sap/cds": "^9.9.3",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/cds-test": "^1.0.2",
+    "@cap-js/sqlite": "^2.4.0",
+    "concurrently": "^9.2.4",
+    "jest": "^29.7.0",
+    "sql.js": "^1.14.1",
+    "cds-plugin-ui5": "^0.17.0",
+    "@sap/cds-dk": "^9.9.3",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.49"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "mock": "node mock-parts-api/server.js",
+    "dev": "concurrently --names \"MOCK,CAP\" --prefix-colors \"cyan,green\" \"node mock-parts-api/server.js\" \"cds watch\"",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "test": "jest --testEnvironment node",
+    "watch-maintenance-orderes": "cds watch --open com.sap.mngords.maintenanceorderes/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy petrobras-maintenance-s2 --delete-services --delete-service-keys --delete-service-brokers"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 60000,
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/exercises/"
+    ]
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sql",
+        "[test]": {
+          "kind": "sqlite",
+          "credentials": {
+            "url": ":memory:",
+            "driver": "sql.js"
+          }
+        },
+        "[production]": {
+          "kind": "hana-cloud"
+        },
+        "[hybrid]": {
+          "kind": "hana-cloud"
+        }
+      },
+      "auth": {
+        "kind": "xsuaa",
+        "[development]": {
+          "kind": "mocked",
+          "users": {
+            "alice": {
+              "password": "initial",
+              "id": "alice@tester.com",
+              "roles": [
+                "MaintenanceAdmin"
+              ]
+            },
+            "bob": {
+              "password": "initial",
+              "id": "bob@tester.com",
+              "roles": [
+                "MaintenanceViewer"
+              ]
+            }
+          }
+        },
+        "[test]": {
+          "kind": "mocked",
+          "users": {
+            "alice": {
+              "password": "initial",
+              "id": "alice@tester.com",
+              "roles": [
+                "MaintenanceAdmin"
+              ]
+            },
+            "bob": {
+              "password": "initial",
+              "id": "bob@tester.com",
+              "roles": [
+                "MaintenanceViewer"
+              ]
+            }
+          }
+        }
+      },
+      "SparePartsAPI": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "PetrobrasSpareParts",
+          "requestTimeout": 5000
+        },
+        "[development]": {
+          "kind": "rest",
+          "credentials": {
+            "url": "http://localhost:3002",
+            "requestTimeout": 5000
+          }
+        },
+        "[test]": {
+          "kind": "rest",
+          "credentials": {
+            "url": "http://localhost:3002",
+            "requestTimeout": 5000
+          }
+        }
+      }
+    },
+    "query": {
+      "limit": {
+        "default": 100,
+        "max": 1000
+      }
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/maintenance-orderes"
+  ]
+}

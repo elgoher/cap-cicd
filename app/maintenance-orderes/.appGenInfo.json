@@ -1,0 +1,32 @@
+{
+  "generationParameters": {
+    "generationDate": "Fri Aug 21 2026 21:41:02 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "Local CAP",
+    "metadataFilename": "",
+    "serviceUrl": "http://localhost:4004/maintenance/",
+    "appName": "maintenance-orderes",
+    "appTitle": "Maintenance Orderes",
+    "appDescription": "Maintenance Orderes",
+    "appNamespace": "com.sap.mngords",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.151.0",
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": false,
+    "generatorVersion": "1.31.1",
+    "template": "List Report Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "MaintenanceOrders"
+      },
+      {
+        "type": "Navigation Entity",
+        "value": "workItems"
+      }
+    ],
+    "launchText": "To launch the generated app, start your CAP project:  and navigate to the following location in your browser:\n\nhttp://localhost:4004/maintenance-orderes/webapp/index.html"
+  }
+}

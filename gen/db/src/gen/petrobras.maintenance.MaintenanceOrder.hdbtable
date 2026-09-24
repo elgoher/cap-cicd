@@ -1,0 +1,17 @@
+COLUMN TABLE petrobras_maintenance_MaintenanceOrder (
+  ID NVARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  orderNumber NVARCHAR(20),
+  equipment_ID NVARCHAR(36) NOT NULL,
+  status NVARCHAR(20) NOT NULL DEFAULT 'DRAFT',
+  priority NVARCHAR(10) NOT NULL DEFAULT 'MEDIUM',
+  description NVARCHAR(500),
+  plannedStart DATE,
+  plannedEnd DATE,
+  responsible NVARCHAR(100),
+  notes NVARCHAR(500),
+  PRIMARY KEY(ID)
+)

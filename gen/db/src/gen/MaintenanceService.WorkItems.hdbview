@@ -1,0 +1,14 @@
+VIEW MaintenanceService_WorkItems AS SELECT
+  WorkItem_0.ID,
+  WorkItem_0.createdAt,
+  WorkItem_0.createdBy,
+  WorkItem_0.modifiedAt,
+  WorkItem_0.modifiedBy,
+  WorkItem_0.order_ID,
+  WorkItem_0.description,
+  WorkItem_0.technician,
+  WorkItem_0.status,
+  WorkItem_0.notes,
+  WorkItem_0.partCode,
+  WorkItem_0.estimatedHours
+FROM petrobras_maintenance_WorkItem AS WorkItem_0

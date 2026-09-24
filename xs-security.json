@@ -1,0 +1,35 @@
+{
+  "xsappname": "petrobras-maintenance",
+  "tenant-mode": "dedicated",
+  "description": "XSUAA security config — Petrobras Maintenance System",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.MaintenanceViewer",
+      "description": "Read access to maintenance orders and equipment"
+    },
+    {
+      "name": "$XSAPPNAME.MaintenanceAdmin",
+      "description": "Full access: create, update and manage maintenance orders"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "MaintenanceViewer",
+      "default-role-name": "Maintenance Viewer",
+      "description": "Read-only access to the Maintenance service",
+      "scope-references": [
+        "$XSAPPNAME.MaintenanceViewer"
+      ]
+    },
+    {
+      "name": "MaintenanceAdmin",
+      "default-role-name": "Maintenance Administrator",
+      "description": "Full read-write access to the Maintenance service",
+      "scope-references": [
+        "$XSAPPNAME.MaintenanceViewer",
+        "$XSAPPNAME.MaintenanceAdmin"
+      ]
+    }
+  ]
+}

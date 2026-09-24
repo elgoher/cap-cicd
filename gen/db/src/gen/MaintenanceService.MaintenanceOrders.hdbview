@@ -1,0 +1,16 @@
+VIEW MaintenanceService_MaintenanceOrders AS SELECT
+  MaintenanceOrder_0.ID,
+  MaintenanceOrder_0.createdAt,
+  MaintenanceOrder_0.createdBy,
+  MaintenanceOrder_0.modifiedAt,
+  MaintenanceOrder_0.modifiedBy,
+  MaintenanceOrder_0.orderNumber,
+  MaintenanceOrder_0.equipment_ID,
+  MaintenanceOrder_0.status,
+  MaintenanceOrder_0.priority,
+  MaintenanceOrder_0.description,
+  MaintenanceOrder_0.plannedStart,
+  MaintenanceOrder_0.plannedEnd,
+  MaintenanceOrder_0.responsible,
+  MaintenanceOrder_0.notes
+FROM petrobras_maintenance_MaintenanceOrder AS MaintenanceOrder_0

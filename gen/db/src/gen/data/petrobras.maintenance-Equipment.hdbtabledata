@@ -1,0 +1,45 @@
+{
+  "format_version": 1,
+  "imports": [
+    {
+      "target_table": "PETROBRAS_MAINTENANCE_EQUIPMENT",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "petrobras.maintenance-Equipment.csv",
+        "has_header": true,
+        "type_config": {
+          "delimiter": ","
+        }
+      },
+      "import_settings": {
+        "import_columns": [
+          "ID",
+          "CODE",
+          "DESCRIPTION",
+          "STATUS",
+          "TYPE",
+          "LOCATION",
+          "PLANT",
+          "CREATEDAT",
+          "CREATEDBY",
+          "MODIFIEDAT",
+          "MODIFIEDBY"
+        ],
+        "include_filter": []
+      },
+      "column_mappings": {
+        "ID": "ID",
+        "CODE": "code",
+        "DESCRIPTION": "description",
+        "STATUS": "status",
+        "TYPE": "type",
+        "LOCATION": "location",
+        "PLANT": "plant",
+        "CREATEDAT": "createdAt",
+        "CREATEDBY": "createdBy",
+        "MODIFIEDAT": "modifiedAt",
+        "MODIFIEDBY": "modifiedBy"
+      }
+    }
+  ]
+}
