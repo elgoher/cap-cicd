@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "build.mta",
+			"label": "Build ",
+			"taskType": "Build",
+			"projectPath": "/home/user/projects/cap-workshop-session-02",
+			"extensions": []
+		},
+		{
+			"type": "deploy.mta.cf",
+			"label": "Deploy to Cloud Foundry ",
+			"taskType": "Deploy",
+			"mtarPath": "/home/user/projects/cap-workshop-session-02/mta_archives/cap-workshop-session-02_0.0.1.mtar",
+			"extensions": [],
+			"dependsOn": [
+				"Build "
+			],
+			"cfTarget": "",
+			"cfEndpoint": "",
+			"cfOrg": "",
+			"cfSpace": ""
+		}
+	]
+}
